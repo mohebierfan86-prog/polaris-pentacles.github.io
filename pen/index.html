@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pentacles · A Polaris suit</title>
+    <meta
+      name="description"
+      content="Pentacles is one of Polaris's four suits. This portfolio covers product craft, durable interfaces, and systems that hold their value."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Syne:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy-950: #05080c;
+        --navy-900: #0b1c2c;
+        --navy-800: #132a40;
+        --navy-700: #1c3a55;
+        --gold-400: #e8d5a3;
+        --gold-500: #c9a227;
+        --gold-600: #9a7b3a;
+        --earth: #6b7340;
+        --ink: #e9eef3;
+        --ink-muted: #a7b4c2;
+        --line: rgba(201, 162, 39, 0.28);
+        --font-display: "Cormorant Garamond", "Times New Roman", serif;
+        --font-ui: "Syne", "Trebuchet MS", sans-serif;
+        --space: clamp(1rem, 2.5vw, 2rem);
+        --max: 68rem;
+        --header-h: 4.25rem;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse 55% 40% at 50% 0%, rgba(201, 162, 39, 0.1), transparent 60%),
+          radial-gradient(ellipse 90% 70% at 50% 100%, rgba(0, 0, 0, 0.55), transparent 70%),
+          linear-gradient(165deg, var(--navy-950) 0%, var(--navy-900) 42%, #0e2436 100%);
+        background-attachment: fixed;
+        font-family: var(--font-ui);
+        font-weight: 500;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.045;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+      }
+
+      body > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -4rem;
+        z-index: 100;
+        padding: 0.65rem 1rem;
+        background: var(--gold-500);
+        color: var(--navy-950);
+        font-weight: 600;
+      }
+
+      .skip-link:focus {
+        top: 1rem;
+      }
+
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        height: var(--header-h);
+        transition: background 0.35s var(--ease), border-color 0.35s var(--ease),
+          backdrop-filter 0.35s var(--ease);
+        border-bottom: 1px solid transparent;
+      }
+
+      .site-header.is-scrolled {
+        background: rgba(5, 8, 12, 0.82);
+        border-bottom-color: var(--line);
+        backdrop-filter: blur(12px);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: min(100% - 2 * var(--space), var(--max));
+        height: 100%;
+        margin-inline: auto;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+      }
+
+      .brand img {
+        width: 2.25rem;
+        height: 2.25rem;
+        object-fit: contain;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .site-nav a {
+        text-decoration: none;
+        color: var(--ink-muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: color 0.25s var(--ease);
+      }
+
+      .site-nav a:hover,
+      .site-nav a:focus-visible {
+        color: var(--gold-400);
+      }
+
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        height: 32px;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        color: var(--gold-400);
+        background: rgba(19, 42, 64, 0.35);
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+      }
+
+      .lang-switch:hover {
+        border-color: var(--gold-500);
+        background: rgba(201, 162, 39, 0.1);
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        place-items: center;
+      }
+
+      .nav-toggle span:not(.sr-only) {
+        display: block;
+        width: 1.25rem;
+        height: 1.5px;
+        background: var(--ink);
+        box-shadow: 0 6px 0 var(--ink), 0 -6px 0 var(--ink);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        isolation: isolate;
+        padding: calc(var(--header-h) + 2rem) var(--space) 3rem;
+      }
+
+      .hero-field {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .hero-orb {
+        position: absolute;
+        width: min(70vw, 42rem);
+        height: min(70vw, 42rem);
+        left: 50%;
+        top: 42%;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 40% 35%, rgba(232, 213, 163, 0.18), transparent 55%),
+          radial-gradient(circle at 60% 65%, rgba(19, 42, 64, 0.9), transparent 70%);
+        transform: translate(-50%, -50%);
+        animation: orb-drift 18s ease-in-out infinite alternate;
+      }
+
+      .hero-geometry {
+        position: absolute;
+        width: min(92vw, 48rem);
+        height: auto;
+        left: 50%;
+        top: 44%;
+        color: var(--gold-500);
+        opacity: 0.85;
+        transform: translate(-50%, -50%);
+        animation: geometry-spin 80s linear infinite;
+      }
+
+      .hero-card {
+        position: relative;
+        width: min(100%, 42rem);
+        padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2.25rem);
+        text-align: center;
+        background:
+          linear-gradient(165deg, rgba(19, 42, 64, 0.55), rgba(5, 8, 12, 0.72));
+        border: 1px solid rgba(201, 162, 39, 0.45);
+        box-shadow:
+          inset 0 0 0 1px rgba(232, 213, 163, 0.18),
+          inset 0 0 0 8px rgba(5, 8, 12, 0.55),
+          inset 0 0 0 9px rgba(201, 162, 39, 0.22),
+          0 24px 60px rgba(0, 0, 0, 0.45);
+        animation: card-shimmer 10s ease-in-out infinite alternate;
+      }
+
+      .hero-card::before,
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        width: 1.1rem;
+        height: 1.1rem;
+        border-color: var(--gold-500);
+        border-style: solid;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .hero-card::before {
+        top: 0.65rem;
+        left: 0.65rem;
+        border-width: 1.5px 0 0 1.5px;
+      }
+
+      .hero-card::after {
+        right: 0.65rem;
+        bottom: 0.65rem;
+        border-width: 0 1.5px 1.5px 0;
+      }
+
+      .hero-corners {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        color: var(--gold-400);
+        opacity: 0.55;
+      }
+
+      .hero-corners span {
+        position: absolute;
+        width: 1.1rem;
+        height: 1.1rem;
+        border-color: currentColor;
+        border-style: solid;
+      }
+
+      .hero-corners .c-tr {
+        top: 0.65rem;
+        right: 0.65rem;
+        border-width: 1.5px 1.5px 0 0;
+      }
+
+      .hero-corners .c-bl {
+        left: 0.65rem;
+        bottom: 0.65rem;
+        border-width: 0 0 1.5px 1.5px;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hero-suit-label {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-style: italic;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-500);
+        animation: logo-rise 1.1s 0.1s var(--ease) both;
+      }
+
+      .hero-suit-label::before,
+      .hero-suit-label::after {
+        content: "◆";
+        display: inline-block;
+        margin-inline: 0.65rem;
+        font-size: 0.55rem;
+        font-style: normal;
+        opacity: 0.7;
+        vertical-align: middle;
+      }
+
+      .hero-logo {
+        width: clamp(9rem, 28vw, 15rem);
+        height: auto;
+        margin-bottom: 0.5rem;
+        filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.45));
+        animation: logo-rise 1.1s var(--ease) both;
+      }
+
+      .hero-kicker {
+        margin: 0;
+        color: var(--gold-400);
+        font-size: 0.78rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        animation: logo-rise 1.1s 0.08s var(--ease) both;
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: clamp(3.6rem, 12vw, 7.5rem);
+        line-height: 0.9;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        animation: logo-rise 1.1s 0.14s var(--ease) both;
+      }
+
+      .hero-lead {
+        margin: 0.35rem 0 0;
+        max-width: 28rem;
+        color: var(--ink-muted);
+        font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+        animation: logo-rise 1.1s 0.2s var(--ease) both;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.85rem;
+        margin-top: 1.25rem;
+        animation: logo-rise 1.1s 0.28s var(--ease) both;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.85rem;
+        padding: 0.7rem 1.35rem;
+        border: 1px solid transparent;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: transform 0.25s var(--ease), background 0.25s var(--ease),
+          border-color 0.25s var(--ease), color 0.25s var(--ease);
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+        color: var(--navy-950);
+      }
+
+      .btn-ghost {
+        border-color: var(--line);
+        color: var(--gold-400);
+        background: rgba(19, 42, 64, 0.35);
+      }
+
+      .btn-ghost:hover,
+      .btn-ghost:focus-visible {
+        border-color: var(--gold-500);
+        background: rgba(201, 162, 39, 0.1);
+      }
+
+      .section {
+        padding: clamp(4.5rem, 10vw, 7.5rem) var(--space);
+      }
+
+      .section-inner {
+        width: min(100%, var(--max));
+        margin-inline: auto;
+      }
+
+      .section-inner.narrow {
+        max-width: 40rem;
+      }
+
+      .eyebrow {
+        margin: 0 0 0.75rem;
+        color: var(--gold-500);
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 1.25rem;
+        height: 1px;
+        margin-right: 0.65rem;
+        vertical-align: middle;
+        background: linear-gradient(90deg, transparent, var(--gold-500));
+      }
+
+      .section h2 {
+        margin: 0 0 1.25rem;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: clamp(2rem, 5vw, 3.25rem);
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+      }
+
+      .lede {
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+
+      .suit p,
+      .polaris p {
+        color: var(--ink-muted);
+        margin: 0 0 1rem;
+      }
+
+      .suit .lede,
+      .polaris .lede {
+        color: var(--ink);
+      }
+
+      .suits-strip {
+        border-block: 1px solid var(--line);
+        background:
+          linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.05), transparent),
+          rgba(5, 8, 12, 0.45);
+      }
+
+      .suit-grid {
+        list-style: none;
+        margin: 2rem 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .suit-grid li {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        min-height: 11rem;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        background:
+          linear-gradient(165deg, rgba(11, 28, 44, 0.95), rgba(5, 8, 12, 0.92));
+        border: 1px solid rgba(201, 162, 39, 0.22);
+        box-shadow: inset 0 0 0 5px rgba(5, 8, 12, 0.65), inset 0 0 0 6px rgba(201, 162, 39, 0.12);
+        opacity: 0.72;
+      }
+
+      .suit-grid li::before,
+      .suit-grid li::after {
+        content: "";
+        position: absolute;
+        width: 0.55rem;
+        height: 0.55rem;
+        border: 1px solid rgba(201, 162, 39, 0.45);
+        pointer-events: none;
+      }
+
+      .suit-grid li::before {
+        top: 0.45rem;
+        left: 0.45rem;
+        border-right: 0;
+        border-bottom: 0;
+      }
+
+      .suit-grid li::after {
+        right: 0.45rem;
+        bottom: 0.45rem;
+        border-left: 0;
+        border-top: 0;
+      }
+
+      .suit-mark {
+        display: block;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-bottom: 0.35rem;
+        color: var(--ink-muted);
+        opacity: 0.55;
+      }
+
+      .suit-mark svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .suit-grid .suit-name {
+        font-family: var(--font-display);
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .suit-grid .suit-note {
+        color: var(--ink-muted);
+        font-size: 0.82rem;
+        opacity: 0.75;
+      }
+
+      .suit-grid .is-active {
+        opacity: 1;
+        background:
+          linear-gradient(160deg, rgba(201, 162, 39, 0.18), transparent 55%),
+          var(--navy-800);
+        border-color: rgba(232, 213, 163, 0.55);
+        box-shadow:
+          inset 0 0 0 5px rgba(5, 8, 12, 0.45),
+          inset 0 0 0 6px rgba(201, 162, 39, 0.35),
+          0 12px 32px rgba(0, 0, 0, 0.35);
+      }
+
+      .suit-grid .is-active .suit-mark {
+        color: var(--gold-400);
+        opacity: 1;
+      }
+
+      .suit-grid .is-active .suit-name {
+        color: var(--gold-400);
+      }
+
+      .suit-grid .is-active .suit-note {
+        color: var(--gold-400);
+        opacity: 1;
+      }
+
+      .craft-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        margin-top: 2.5rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .craft-item {
+        position: relative;
+        padding: 1.75rem 1.25rem 1.75rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .craft-item::before {
+        content: "◆";
+        position: absolute;
+        top: 1.85rem;
+        right: 0.35rem;
+        font-size: 0.55rem;
+        color: var(--gold-500);
+        opacity: 0.55;
+      }
+
+      .craft-item:nth-child(even) {
+        padding-left: 1.75rem;
+        border-left: 1px solid var(--line);
+      }
+
+      .craft-item h3 {
+        margin: 0 0 0.65rem;
+        font-family: var(--font-display);
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--gold-400);
+      }
+
+      .craft-item h3::after {
+        content: "";
+        display: block;
+        width: 3.5rem;
+        height: 1px;
+        margin-top: 0.55rem;
+        background: linear-gradient(90deg, var(--gold-500), transparent);
+      }
+
+      .craft-item p {
+        margin: 0;
+        color: var(--ink-muted);
+        max-width: 28rem;
+      }
+
+      .work-case {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .work-case h3 {
+        margin: 0 0 0.5rem;
+        font-family: var(--font-display);
+        font-size: clamp(1.85rem, 4vw, 2.5rem);
+        font-weight: 600;
+        color: var(--gold-400);
+      }
+
+      .work-outcome {
+        margin: 0 0 1.25rem;
+        color: var(--ink);
+        font-size: 1.1rem;
+        max-width: 40rem;
+      }
+
+      .work-case > p {
+        margin: 0 0 1rem;
+        color: var(--ink-muted);
+        max-width: 42rem;
+      }
+
+      .work-meta {
+        margin: 0 0 2rem;
+        color: var(--ink-muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.04em;
+        max-width: 42rem;
+      }
+
+      .work-gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .work-gallery figure {
+        margin: 0;
+        padding: 0.55rem;
+        border: 1px solid rgba(201, 162, 39, 0.35);
+        background:
+          linear-gradient(165deg, rgba(19, 42, 64, 0.65), rgba(5, 8, 12, 0.85));
+        box-shadow: inset 0 0 0 1px rgba(232, 213, 163, 0.12);
+        overflow: hidden;
+      }
+
+      .work-gallery img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid rgba(201, 162, 39, 0.18);
+      }
+
+      .work-gallery figcaption {
+        padding: 0.75rem 0.35rem 0.2rem;
+        color: var(--ink-muted);
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      @media (min-width: 900px) {
+        .work-gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .work-gallery figure:first-child {
+          grid-column: 1 / -1;
+        }
+      }
+
+      .polaris {
+        background:
+          radial-gradient(ellipse 60% 80% at 100% 50%, rgba(201, 162, 39, 0.08), transparent 55%),
+          rgba(5, 8, 12, 0.35);
+      }
+
+      .site-footer {
+        padding: 2.5rem var(--space) 3rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-inner {
+        width: min(100%, var(--max));
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--ink-muted);
+        font-size: 0.92rem;
+      }
+
+      .footer-inner img {
+        width: 2rem;
+        height: 2rem;
+        object-fit: contain;
+        opacity: 0.85;
+      }
+
+      .footer-seal {
+        width: 1.35rem;
+        height: 1.35rem;
+        flex-shrink: 0;
+        color: var(--gold-500);
+        opacity: 0.85;
+      }
+
+      .footer-seal svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .footer-inner strong {
+        color: var(--gold-400);
+        font-weight: 600;
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(1.5rem);
+        transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+      }
+
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @keyframes logo-rise {
+        from {
+          opacity: 0;
+          transform: translateY(1.25rem);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @keyframes orb-drift {
+        from {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        to {
+          transform: translate(-48%, -52%) scale(1.06);
+        }
+      }
+
+      @keyframes geometry-spin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      @keyframes card-shimmer {
+        from {
+          box-shadow:
+            inset 0 0 0 1px rgba(232, 213, 163, 0.14),
+            inset 0 0 0 8px rgba(5, 8, 12, 0.55),
+            inset 0 0 0 9px rgba(201, 162, 39, 0.18),
+            0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+        to {
+          box-shadow:
+            inset 0 0 0 1px rgba(232, 213, 163, 0.32),
+            inset 0 0 0 8px rgba(5, 8, 12, 0.55),
+            inset 0 0 0 9px rgba(201, 162, 39, 0.38),
+            0 28px 70px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      @media (max-width: 820px) {
+        .suit-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .craft-list {
+          grid-template-columns: 1fr;
+        }
+
+        .craft-item:nth-child(even) {
+          padding-left: 0;
+          border-left: 0;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .nav-toggle {
+          display: grid;
+        }
+
+        .site-nav {
+          position: fixed;
+          inset: var(--header-h) 0 auto;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 0.5rem var(--space) 1rem;
+          background: rgba(5, 8, 12, 0.96);
+          border-bottom: 1px solid var(--line);
+        }
+
+        .site-nav.is-open {
+          display: flex;
+        }
+
+        .site-nav a {
+          padding: 0.9rem 0;
+          border-bottom: 1px solid rgba(201, 162, 39, 0.12);
+        }
+
+        .lang-switch {
+          margin-top: 0.5rem;
+          align-self: flex-start;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .suit-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-actions {
+          width: 100%;
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .hero-orb,
+        .hero-geometry,
+        .hero-card,
+        .hero-logo,
+        .hero-kicker,
+        .hero-suit-label,
+        .hero h1,
+        .hero-lead,
+        .hero-actions,
+        [data-reveal] {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ===== RTL ===== */
+      html[dir="rtl"] body {
+        font-family: Tahoma, Arial, sans-serif;
+        line-height: 1.8;
+      }
+      html[dir="rtl"] .hero h1,
+      html[dir="rtl"] .section h2,
+      html[dir="rtl"] .craft-item h3,
+      html[dir="rtl"] .work-case h3,
+      html[dir="rtl"] .suit-grid .suit-name {
+        font-family: Tahoma, Arial, sans-serif;
+      }
+      html[dir="rtl"] .eyebrow::before {
+        margin-right: 0;
+        margin-left: 0.65rem;
+      }
+      html[dir="rtl"] .craft-item::before {
+        right: auto;
+        left: 0.35rem;
+      }
+      html[dir="rtl"] .craft-item {
+        padding-left: 1.25rem;
+        padding-right: 0;
+      }
+      html[dir="rtl"] .craft-item:nth-child(even) {
+        padding-right: 1.75rem;
+        padding-left: 1.25rem;
+        border-left: 0;
+        border-right: 1px solid var(--line);
+      }
+      @media (max-width: 820px) {
+        html[dir="rtl"] .craft-item:nth-child(even) {
+          padding-right: 0;
+          border-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="Pentacles home">
+          <img src="assets/logo_polaris.png" alt="" width="40" height="40" />
+          <span>POLARIS</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          <span class="sr-only">Menu</span>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav id="site-nav" class="site-nav" data-nav aria-label="Primary">
+          <a href="#suit" data-i18n="navSuit">Suit</a>
+          <a href="#craft" data-i18n="navCraft">Craft</a>
+          <a href="#work" data-i18n="navWork">Work</a>
+          <a href="#polaris" data-i18n="navPolaris">Polaris</a>
+          <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch language">FA</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero" aria-labelledby="hero-brand">
+        <div class="hero-field" aria-hidden="true">
+          <div class="hero-orb"></div>
+          <svg class="hero-geometry" viewBox="0 0 800 800" fill="none">
+            <circle cx="400" cy="400" r="160" stroke="currentColor" stroke-width="0.7" opacity="0.4" />
+            <circle cx="400" cy="400" r="220" stroke="currentColor" stroke-width="0.6" opacity="0.35" />
+            <circle
+              cx="400"
+              cy="400"
+              r="300"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-dasharray="2 10"
+              opacity="0.25"
+            />
+            <circle cx="400" cy="400" r="360" stroke="currentColor" stroke-width="0.4" opacity="0.18" />
+            <circle cx="400" cy="400" r="90" stroke="currentColor" stroke-width="0.8" opacity="0.3" />
+            <path d="M400 80 L400 720 M80 400 L720 400" stroke="currentColor" stroke-width="0.4" opacity="0.2" />
+            <polygon
+              points="400,145 455,325 640,325 490,435 545,615 400,505 255,615 310,435 160,325 345,325"
+              stroke="currentColor"
+              stroke-width="0.85"
+              opacity="0.32"
+            />
+            <polygon
+              points="400,210 430,300 525,300 448,355 475,445 400,390 325,445 352,355 275,300 370,300"
+              stroke="currentColor"
+              stroke-width="0.55"
+              opacity="0.2"
+            />
+          </svg>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-corners" aria-hidden="true">
+            <span class="c-tr"></span>
+            <span class="c-bl"></span>
+          </div>
+          <div class="hero-content">
+            <img class="hero-logo" src="assets/logo_pentacles.png" alt="Polaris mark" width="280" height="280" />
+            <p class="hero-kicker" data-i18n="heroKicker">Polaris · Four suits · This is ours</p>
+            <h1 id="hero-brand" data-i18n="heroTitle">Pentacles</h1>
+            <p class="hero-suit-label" data-i18n="suitEarth">Suit of Earth</p>
+            <p class="hero-lead" data-i18n="heroLead">
+              We build the parts of a product that should still feel solid a year after launch.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#suit" data-i18n="exploreSuit">Explore the suit</a>
+              <a class="btn btn-ghost" href="#craft" data-i18n="viewCraft">View the craft</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="suit" class="section suit" data-reveal>
+        <div class="section-inner narrow">
+          <p class="eyebrow" data-i18n="sectionOne">I · The Suit</p>
+          <h2 data-i18n="suitTitle">Material craft inside a navigating team</h2>
+          <p class="lede" data-i18n="suitLead">
+            Polaris runs as four suits. Cups, Wands, Swords, and Pentacles each hold a lane.
+            Pentacles owns the work that turns ideas into durable product: systems people trust,
+            interfaces that age well, and delivery that respects what already ships.
+          </p>
+          <p data-i18n="suitText">
+            This portfolio belongs to the Pentacles suit alone. It is not a personal page. It is
+            the public face of one lane inside Polaris.
+          </p>
+        </div>
+      </section>
+
+      <section class="section suits-strip" aria-labelledby="suits-heading" data-reveal>
+        <div class="section-inner">
+          <p class="eyebrow" data-i18n="sectionTwo">II · The Deck</p>
+          <h2 id="suits-heading" data-i18n="deckTitle">Polaris moves as a deck</h2>
+          <ul class="suit-grid">
+            <li>
+              <span class="suit-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 4c-2.8 2.4-4.5 4.8-4.5 7.2A4.5 4.5 0 0 0 12 15.7a4.5 4.5 0 0 0 4.5-4.5C16.5 8.8 14.8 6.4 12 4Z"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  />
+                  <path d="M12 15.7V20" stroke="currentColor" stroke-width="1.2" />
+                </svg>
+              </span>
+              <span class="suit-name" data-i18n="suitCups">Cups</span>
+              <span class="suit-note" data-i18n="suitCupsNote">Relation &amp; care</span>
+            </li>
+            <li>
+              <span class="suit-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v18M9 6l3-3 3 3M8 12h8" stroke="currentColor" stroke-width="1.2" />
+                </svg>
+              </span>
+              <span class="suit-name" data-i18n="suitWands">Wands</span>
+              <span class="suit-note" data-i18n="suitWandsNote">Spark &amp; drive</span>
+            </li>
+            <li>
+              <span class="suit-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v18M6 8l6 4 6-4M8 20h8" stroke="currentColor" stroke-width="1.2" />
+                </svg>
+              </span>
+              <span class="suit-name" data-i18n="suitSwords">Swords</span>
+              <span class="suit-note" data-i18n="suitSwordsNote">Clarity &amp; cut</span>
+            </li>
+            <li class="is-active" aria-current="true">
+              <span class="suit-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.2" />
+                  <circle cx="12" cy="12" r="5.5" stroke="currentColor" stroke-width="0.9" />
+                  <polygon
+                    points="12,5.5 13.8,10.5 19,10.5 14.8,13.5 16.4,18.5 12,15.5 7.6,18.5 9.2,13.5 5,10.5 10.2,10.5"
+                    stroke="currentColor"
+                    stroke-width="0.9"
+                  />
+                </svg>
+              </span>
+              <span class="suit-name" data-i18n="suitPentacles">Pentacles</span>
+              <span class="suit-note" data-i18n="suitPentaclesNote">Craft &amp; weight</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="craft" class="section craft" data-reveal>
+        <div class="section-inner">
+          <p class="eyebrow" data-i18n="sectionThree">III · The Craft</p>
+          <h2 data-i18n="craftTitle">What this suit carries</h2>
+          <div class="craft-list">
+            <article class="craft-item">
+              <h3 data-i18n="craft1Title">Product systems</h3>
+              <p data-i18n="craft1Text">
+                Information architecture, flows, and the quiet rules that keep a product coherent
+                when features stack up.
+              </p>
+            </article>
+            <article class="craft-item">
+              <h3 data-i18n="craft2Title">Interface craft</h3>
+              <p data-i18n="craft2Text">
+                Layout, type, motion, and interaction detail. Screens that feel measured instead of
+                loud.
+              </p>
+            </article>
+            <article class="craft-item">
+              <h3 data-i18n="craft3Title">Delivery rigor</h3>
+              <p data-i18n="craft3Text">
+                Specs that survive handoff, reviews that catch drift, and releases that do not
+                surprise the team already shipping.
+              </p>
+            </article>
+            <article class="craft-item">
+              <h3 data-i18n="craft4Title">Material polish</h3>
+              <p data-i18n="craft4Text">
+                The last pass that turns "works" into "holds." Spacing, states, empty views, and
+                the edges users actually touch.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section work" data-reveal>
+        <div class="section-inner">
+          <p class="eyebrow" data-i18n="sectionFour">IV · The Work</p>
+          <h2 data-i18n="workTitle">One product, shipped end to end</h2>
+          <article class="work-case">
+            <h3>PipelineHQ</h3>
+            <p class="work-outcome" data-i18n="workOutcome">
+              A full-stack B2B sales CRM — Salesforce-lite for SaaS teams: capture leads, run deals
+              through a gated pipeline, and hit forecast with real process enforcement.
+            </p>
+            <p data-i18n="workText1">
+              Three roles share one workspace. Sales Development owns and converts leads. Account
+              Executives move deals, complete MEDDIC, and close with win/loss reasons. Sales
+              Managers run the admin hub, forecast, and report exports.
+            </p>
+            <p data-i18n="workText2">
+              The product is not just CRUD screens: API-enforced stage gates, Celery background
+              jobs, WebSocket alerts, lead routing, email sequences, global search, and analytics
+              with CSV export — backed by Django REST, PostgreSQL, Redis, and a Next.js client.
+            </p>
+            <p class="work-meta">
+              Django · DRF · Celery · Redis · PostgreSQL · Next.js · Channels
+            </p>
+            <div class="work-gallery">
+              <figure>
+                <img
+                  src="assets/project_login.png"
+                  alt="PipelineHQ login and password sign-in"
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+                <figcaption data-i18n="galleryLogin">Login · sign in</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/project_dashboard.png"
+                  alt="PipelineHQ sales dashboard with KPIs and funnel"
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+                <figcaption data-i18n="galleryDashboard">Dashboard · KPIs</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/project_leads.png"
+                  alt="PipelineHQ leads workspace with filters and CSV import"
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+                <figcaption data-i18n="galleryLeads">Leads · import</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/project_tasks.png"
+                  alt="PipelineHQ tasks view with date and time picker"
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                />
+                <figcaption data-i18n="galleryTasks">Tasks · due picker</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="polaris" class="section polaris" data-reveal>
+        <div class="section-inner narrow">
+          <p class="eyebrow" data-i18n="sectionFive">V · The Star</p>
+          <h2 data-i18n="polarisTitle">We hold the weight so the star can point</h2>
+          <p class="lede" data-i18n="polarisLead">
+            Polaris sets direction. The suits take the work apart. Pentacles is the suit that asks
+            whether the thing will still stand when the excitement cools.
+          </p>
+          <p data-i18n="polarisText">
+            If Cups keep people close, Wands keep momentum, and Swords keep decisions sharp,
+            Pentacles keeps the product honest about material quality. That is the lane this
+            portfolio represents.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <img src="assets/logo_polaris.png" alt="" width="36" height="36" />
+        <img src="assets/logo_pentacles.png" alt="" width="36" height="36" />
+        <p>
+          <strong>Polaris</strong>
+          <span aria-hidden="true"> · </span>
+          <strong>Pentacles</strong>
+          <span aria-hidden="true"> · </span>
+          <span data-i18n="footerText">One of four suits</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const header = document.querySelector("[data-header]");
+        const nav = document.querySelector("[data-nav]");
+        const navToggle = document.querySelector("[data-nav-toggle]");
+        const revealItems = document.querySelectorAll("[data-reveal]");
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const setHeaderState = () => {
+          if (!header) return;
+          header.classList.toggle("is-scrolled", window.scrollY > 24);
+        };
+
+        const closeNav = () => {
+          if (!nav || !navToggle) return;
+          nav.classList.remove("is-open");
+          navToggle.setAttribute("aria-expanded", "false");
+        };
+
+        if (navToggle && nav) {
+          navToggle.addEventListener("click", () => {
+            const open = nav.classList.toggle("is-open");
+            navToggle.setAttribute("aria-expanded", String(open));
+          });
+
+          nav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeNav);
+          });
+        }
+
+        window.addEventListener("scroll", setHeaderState, { passive: true });
+        setHeaderState();
+
+        if (!reduceMotion && "IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+          );
+
+          revealItems.forEach((item) => observer.observe(item));
+        } else {
+          revealItems.forEach((item) => item.classList.add("is-visible"));
+        }
+      })();
+
+      /* ===== Language switch ===== */
+      (() => {
+        const translations = {
+          en: {
+            navSuit: "Suit",
+            navCraft: "Craft",
+            navWork: "Work",
+            navPolaris: "Polaris",
+            heroKicker: "Polaris · Four suits · This is ours",
+            heroTitle: "Pentacles",
+            suitEarth: "Suit of Earth",
+            heroLead: "We build the parts of a product that should still feel solid a year after launch.",
+            exploreSuit: "Explore the suit",
+            viewCraft: "View the craft",
+            sectionOne: "I · The Suit",
+            suitTitle: "Material craft inside a navigating team",
+            suitLead:
+              "Polaris runs as four suits. Cups, Wands, Swords, and Pentacles each hold a lane. Pentacles owns the work that turns ideas into durable product: systems people trust, interfaces that age well, and delivery that respects what already ships.",
+            suitText:
+              "This portfolio belongs to the Pentacles suit alone. It is not a personal page. It is the public face of one lane inside Polaris.",
+            sectionTwo: "II · The Deck",
+            deckTitle: "Polaris moves as a deck",
+            suitCups: "Cups",
+            suitCupsNote: "Relation & care",
+            suitWands: "Wands",
+            suitWandsNote: "Spark & drive",
+            suitSwords: "Swords",
+            suitSwordsNote: "Clarity & cut",
+            suitPentacles: "Pentacles",
+            suitPentaclesNote: "Craft & weight",
+            sectionThree: "III · The Craft",
+            craftTitle: "What this suit carries",
+            craft1Title: "Product systems",
+            craft1Text:
+              "Information architecture, flows, and the quiet rules that keep a product coherent when features stack up.",
+            craft2Title: "Interface craft",
+            craft2Text: "Layout, type, motion, and interaction detail. Screens that feel measured instead of loud.",
+            craft3Title: "Delivery rigor",
+            craft3Text:
+              "Specs that survive handoff, reviews that catch drift, and releases that do not surprise the team already shipping.",
+            craft4Title: "Material polish",
+            craft4Text:
+              'The last pass that turns "works" into "holds." Spacing, states, empty views, and the edges users actually touch.',
+            sectionFour: "IV · The Work",
+            workTitle: "One product, shipped end to end",
+            workOutcome:
+              "A full-stack B2B sales CRM — Salesforce-lite for SaaS teams: capture leads, run deals through a gated pipeline, and hit forecast with real process enforcement.",
+            workText1:
+              "Three roles share one workspace. Sales Development owns and converts leads. Account Executives move deals, complete MEDDIC, and close with win/loss reasons. Sales Managers run the admin hub, forecast, and report exports.",
+            workText2:
+              "The product is not just CRUD screens: API-enforced stage gates, Celery background jobs, WebSocket alerts, lead routing, email sequences, global search, and analytics with CSV export — backed by Django REST, PostgreSQL, Redis, and a Next.js client.",
+            galleryLogin: "Login · sign in",
+            galleryDashboard: "Dashboard · KPIs",
+            galleryLeads: "Leads · import",
+            galleryTasks: "Tasks · due picker",
+            sectionFive: "V · The Star",
+            polarisTitle: "We hold the weight so the star can point",
+            polarisLead:
+              "Polaris sets direction. The suits take the work apart. Pentacles is the suit that asks whether the thing will still stand when the excitement cools.",
+            polarisText:
+              "If Cups keep people close, Wands keep momentum, and Swords keep decisions sharp, Pentacles keeps the product honest about material quality. That is the lane this portfolio represents.",
+            footerText: "One of four suits"
+          },
+          fa: {
+            navSuit: "خال",
+            navCraft: "مهارت",
+            navWork: "نمونه‌کار",
+            navPolaris: "پولاریس",
+            heroKicker: "پولاریس · چهار خال · این خال ماست",
+            heroTitle: "پنتاکل",
+            suitEarth: "خال خاک",
+            heroLead: "ما بخش‌هایی از محصول را می‌سازیم که باید یک سال بعد از عرضه هم محکم و پابرجا بماند.",
+            exploreSuit: "کاوش این خال",
+            viewCraft: "دیدن مهارت‌ها",
+            sectionOne: "۱ · خال",
+            suitTitle: "مهارت مادی درون یک تیم مسیریاب",
+            suitLead:
+              "پولاریس با چهار خال کار می‌کند: جام‌ها، عصاها، شمشیرها و پنتاکل‌ها، هرکدام یک مسیر را در دست دارند. پنتاکل‌ها مسئول کاری‌ست که ایده‌ها را به محصولی پایدار تبدیل می‌کند: سیستم‌هایی که مردم به آن‌ها اعتماد می‌کنند، رابط‌هایی که خوب کهنه می‌شوند، و تحویلی که به آنچه پیش‌تر عرضه شده احترام می‌گذارد.",
+            suitText:
+              "این پورتفولیو فقط متعلق به خال پنتاکل‌هاست. یک صفحه‌ی شخصی نیست؛ چهره‌ی عمومی یکی از مسیرهای درون پولاریس است.",
+            sectionTwo: "۲ · دسته",
+            deckTitle: "پولاریس مانند یک دسته حرکت می‌کند",
+            suitCups: "جام‌ها",
+            suitCupsNote: "رابطه و مراقبت",
+            suitWands: "عصاها",
+            suitWandsNote: "جرقه و انگیزه",
+            suitSwords: "شمشیرها",
+            suitSwordsNote: "وضوح و برندگی",
+            suitPentacles: "پنتاکل‌ها",
+            suitPentaclesNote: "مهارت و وزن",
+            sectionThree: "۳ · مهارت",
+            craftTitle: "این خال چه چیزی حمل می‌کند",
+            craft1Title: "سیستم‌های محصول",
+            craft1Text:
+              "معماری اطلاعات، جریان‌ها، و قوانین خاموشی که وقتی ویژگی‌ها روی هم انباشته می‌شوند، محصول را منسجم نگه می‌دارند.",
+            craft2Title: "مهارت رابط کاربری",
+            craft2Text: "چیدمان، تایپوگرافی، حرکت، و جزئیات تعامل. صفحاتی که به‌جای پرسروصدا بودن، سنجیده به‌نظر می‌رسند.",
+            craft3Title: "دقت در تحویل",
+            craft3Text:
+              "مشخصاتی که بعد از تحویل هم زنده می‌مانند، بازبینی‌هایی که انحراف را می‌گیرند، و انتشارهایی که تیمی را که در حال ارسال است غافلگیر نمی‌کند.",
+            craft4Title: "پرداخت نهایی",
+            craft4Text:
+              'آخرین گذر که «کار می‌کند» را به «پابرجاست» تبدیل می‌کند. فاصله‌گذاری، حالت‌ها، نماهای خالی، و لبه‌هایی که کاربران واقعاً لمس می‌کنند.',
+            sectionFour: "۴ · نمونه‌کار",
+            workTitle: "یک محصول، از ابتدا تا انتها ساخته و عرضه‌شده",
+            workOutcome:
+              "یک CRM فروش B2B تمام‌پشته — نسخه‌ی سبک‌تر سیلزفورس برای تیم‌های SaaS: ثبت سرنخ‌ها، عبور معاملات از یک پایپ‌لاین کنترل‌شده، و رسیدن به پیش‌بینی فروش با اجرای واقعی فرآیند.",
+            workText1:
+              "سه نقش یک فضای کاری مشترک دارند. تیم توسعه‌ی فروش سرنخ‌ها را مالکیت و تبدیل می‌کند. مدیران حساب معاملات را پیش می‌برند، MEDDIC را تکمیل می‌کنند و با دلایل برد/باخت می‌بندند. مدیران فروش هاب مدیریتی، پیش‌بینی، و خروجی گزارش‌ها را اداره می‌کنند.",
+            workText2:
+              "این محصول فقط صفحات CRUD نیست: گیت‌های مرحله‌ای که در سطح API اجرا می‌شوند، وظایف پس‌زمینه‌ی Celery، هشدارهای WebSocket، مسیریابی سرنخ، دنباله‌های ایمیل، جستجوی سراسری، و تحلیل‌ها با خروجی CSV — با پشتیبانی Django REST، PostgreSQL، Redis، و کلاینت Next.js.",
+            galleryLogin: "ورود · احراز هویت",
+            galleryDashboard: "داشبورد · شاخص‌ها",
+            galleryLeads: "سرنخ‌ها · ایمپورت",
+            galleryTasks: "وظایف · انتخاب‌گر تاریخ",
+            sectionFive: "۵ · ستاره",
+            polarisTitle: "ما وزن را نگه می‌داریم تا ستاره بتواند مسیر را نشان دهد",
+            polarisLead:
+              "پولاریس مسیر را تعیین می‌کند. خال‌ها کار را از هم باز می‌کنند. پنتاکل‌ها خالی‌ست که می‌پرسد آیا این چیز وقتی هیجان فروکش کرد، همچنان پابرجا خواهد ماند یا نه.",
+            polarisText:
+              "اگر جام‌ها آدم‌ها را نزدیک نگه می‌دارند، عصاها شتاب را حفظ می‌کنند، و شمشیرها تصمیم‌ها را تیز نگه می‌دارند، پنتاکل‌ها محصول را در مورد کیفیت مادی صادق نگه می‌دارد. این همان مسیری‌ست که این پورتفولیو نماینده‌ی آن است.",
+            footerText: "یکی از چهار خال"
+          }
+        };
+
+        const langSwitch = document.getElementById("langSwitch");
+        let currentLang = localStorage.getItem("lang") || "en";
+
+        const applyLang = (lang) => {
+          document.documentElement.lang = lang === "fa" ? "fa" : "en";
+          document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const key = el.getAttribute("data-i18n");
+            if (translations[lang] && translations[lang][key] !== undefined) {
+              el.innerHTML = translations[lang][key];
+            }
+          });
+          if (langSwitch) langSwitch.textContent = lang === "fa" ? "EN" : "FA";
+          localStorage.setItem("lang", lang);
+          currentLang = lang;
+        };
+
+        if (langSwitch) {
+          langSwitch.addEventListener("click", () => {
+            applyLang(currentLang === "fa" ? "en" : "fa");
+          });
+        }
+
+        applyLang(currentLang);
+      })();
+    </script>
+  </body>
+</html>
